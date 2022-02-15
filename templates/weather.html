@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Como está o tempo agora?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-1 has-text-centered">
+                    Como está o tempo agora?
+                </h1>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form method="POST">
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input" name="city" type="text" placeholder="Nome da Cidade">
+                            </div>
+                            <div class="control">
+                                <button class="button is-info">
+                                    Adicionar Cidade
+                                </button>
+                            </div>
+                        </div>
+                        {% with messages =  get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category,message in messages %}
+                                {% if category != 'cookie_active' %}
+                                    {% set message_class = 'is-success' %}                                
+                                    {% if category == 'error' %}
+                                        {% set message_class = 'is-danger' %}
+                                    {% endif %}
+                                    <div id='notification' class="notification {{ message_class }}">{{ message }}</div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    {% for weather in weather_data %}
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{ weather.city[0]|upper}}{{weather.city[1:] }}</span>
+                                        <br>
+                                        <span class="subtitle">{{ weather.temperature }}° C</span>
+                                        <br> {{ weather.description }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-right">
+                                <a href = "{{ url_for('delete_city', name = weather.city) }}">
+                                <button class="delete"></button>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% with messages =  get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category,message in messages %}
+              {% if category == 'cookie_active' %}
+                  <div class="modal is-active is-clipped">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                      <header class="modal-card-head">
+                        <p class="modal-card-title">Lembrete!</p>
+                        <a href = "{{ url_for('index_get') }}">
+                          <button class="delete" aria-label="close"></button>
+                        </a>
+                      </header>
+                      <section class="modal-card-body">
+                        Neste site, utilizamos cookies para lhe permitir utilizar os nossos serviços.
+                      </section>
+                      <footer class="modal-card-foot">
+                        <a href = "{{ url_for('accept_cookies') }}">
+                          <button class="button is-success"> 👍 Aceitar!</button>
+                        </a>
+                      </footer>
+                    </div>
+                  </div>
+              {% endif %}
+          {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+              <strong>Como está o tempo agora?</strong> by <a href="https://github.com/jeas560">Jonathan Silva</a>. The source code is licensed
+              <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
+            </p>    
+        </div>
+    </footer>
+</body>
+
+</html>
