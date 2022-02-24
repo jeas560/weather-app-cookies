@@ -1,7 +1,7 @@
 # weather-app-flask-cookies
 A project to study flask.
 
-For a live version click [here](https://tempo-na-cidade-cookies.herokuapp.com/).
+For a live version click [here](https://weather-app-flask-cookies.herokuapp.com/). 
 
 After download the project, go to the directory and follow the code block:
 
