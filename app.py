@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, mak
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'VoqKxHa9kca4p5ilyNyrYQ'
+app.config['SECRET_KEY'] = 'Key'
 
 def get_weather_data(city):
     url = f'http://api.openweathermap.org/data/2.5/weather?q={ city }&units=metric&appid=dba04c7d88da94c4134ea7e42a481a24'
