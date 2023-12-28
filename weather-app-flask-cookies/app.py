@@ -1,4 +1,3 @@
-# from flask.helpers import url_for
 from dotenv import dotenv_values
 import requests
 from flask import (
@@ -58,39 +57,33 @@ def index_get():
 @app.route("/", methods=["POST"])
 def index_post():
     req = request.cookies.get("cidades")
-
-    if not req:
-        cities = []
-    else:
-        cities = req.split(", ")
-
     err_msg = ""
 
     new_city = request.form.get("city").capitalize()
 
-    if new_city != "":
-        if new_city:
-            if new_city in cities:
-                err_msg = "Cidade já existente na base de dados!"
-            else:
-                new_city_data = get_weather_data(new_city)
-
-                if new_city_data["cod"] == 200:
-                    cities.append(new_city)
-                else:
-                    err_msg = "Cidade não encontrada!"
-        if err_msg:
+    if new_city and new_city != "":
+        if req and (new_city in req.split(", ")):
+            err_msg = "Cidade já existente na base de dados!"
             flash(err_msg, "error")
         else:
-            flash("Cidade adicionada com sucesso!", "succes")
+            new_city_data = get_weather_data(new_city)
+            if new_city_data["cod"] == 200:
+                flash("Cidade adicionada com sucesso!", "succes")
+                if req:
+                    req = req + ", " + new_city
+                else:
+                    req = new_city
+            else:
+                err_msg = "Cidade não encontrada!"
+                flash(err_msg, "error")
     else:
-        err_msg = "Inserir o nome da cidade no campo solicitado!"
+        err_msg = "Favor inserir o nome da cidade no campo indicado!"
         flash(err_msg, "error")
 
     res = make_response(redirect(url_for("index_get")))
 
-    if cities != []:
-        res.set_cookie("cidades", ", ".join(cities), max_age=60 * 60 * 24 * 365 * 2)
+    if req:
+        res.set_cookie("cidades", req, max_age=60 * 60 * 24 * 365 * 2)
 
     return res
 
