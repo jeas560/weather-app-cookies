@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "weather-app-flask-cookies"
+name = "weather_app_flask_cookies"
 version = "0.1.0"
 description = ""
 authors = ["jeas560 <jeas560@gmail.com>"]
