@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="media-right">
-                                <a href = "{{ url_for('delete_city', name = weather.city) }}">
+                                <a href = "{{ url_for('main.delete_city', name = weather.city) }}">
                                 <button class="delete"></button>
                                 </a>
                             </div>
@@ -98,7 +98,7 @@
                     <div class="modal-card">
                       <header class="modal-card-head">
                         <p class="modal-card-title">Lembrete!</p>
-                        <a href = "{{ url_for('index_get') }}">
+                        <a href = "{{ url_for('main.index_get') }}">
                           <button class="delete" aria-label="close"></button>
                         </a>
                       </header>
@@ -106,7 +106,7 @@
                         Neste site, utilizamos cookies para lhe permitir utilizar os nossos serviços.
                       </section>
                       <footer class="modal-card-foot">
-                        <a href = "{{ url_for('accept_cookies') }}">
+                        <a href = "{{ url_for('main.accept_cookies') }}">
                           <button class="button is-success"> 👍 Aceitar!</button>
                         </a>
                       </footer>

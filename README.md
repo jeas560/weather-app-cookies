@@ -5,7 +5,9 @@ Projeto de estudo flask e utilização de cookies do browser.
 ## Objetivos da implementação
 
 - [x] Extração de dados da API da `Openweathermap`
-- [ ] Refatoração do código para uma melhor leitura
+- [x] Refatoração do código para uma melhor leitura
+- [x] Adição de Blueprints
+- [ ] Adição de Error Handlers
 - [ ] Adição de testes automatizados
 - [ ] Fazer deploy na vercel e implmentação de CI/CD
 - [ ] Adição de pre-commit?
