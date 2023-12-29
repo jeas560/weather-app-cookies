@@ -49,6 +49,8 @@ poetry run pytest
 
 ## Inicializando o servidor
 
-Na pasta contendo o arquivo `app.py` rode o comando
+Para inicializar o servidpor utilize o comando:
 
-    flask run
+```bash
+poetry run flask --app weather_app_flask_cookies/app run
+```
