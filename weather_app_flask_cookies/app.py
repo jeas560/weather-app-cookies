@@ -10,6 +10,8 @@ from flask import (
     make_response,
 )
 
+MAX_AGE = 60 * 60 * 24 * 365 * 2
+
 app = Flask(__name__)
 
 config = dotenv_values(".env")
@@ -31,15 +33,10 @@ def index_get():
 
     req = request.cookies.get("cidades")
 
-    if not req:
-        cities = [""]
-    else:
-        cities = req.split(", ")
-
     weather_data = []
 
-    if cities != [""]:
-        for city in cities:
+    if req:
+        for city in req.split(", "):
             r = get_weather_data(city)
 
             weather = {
@@ -83,7 +80,7 @@ def index_post():
     res = make_response(redirect(url_for("index_get")))
 
     if req:
-        res.set_cookie("cidades", req, max_age=60 * 60 * 24 * 365 * 2)
+        res.set_cookie("cidades", req, max_age=MAX_AGE)
 
     return res
 
@@ -96,7 +93,7 @@ def delete_city(name):
     flash(f"{ name } eliminada da base de dados!")
 
     res = make_response(redirect(url_for("index_get")))
-    res.set_cookie("cidades", ", ".join(cities), max_age=60 * 60 * 24 * 365 * 2)
+    res.set_cookie("cidades", ", ".join(cities), max_age=MAX_AGE)
 
     return res
 
@@ -104,6 +101,6 @@ def delete_city(name):
 @app.route("/cookie")
 def accept_cookies():
     res = make_response(redirect(url_for("index_get")))
-    res.set_cookie("accept", "true", max_age=60 * 60 * 24 * 365 * 2)
+    res.set_cookie("accept", "true", max_age=MAX_AGE)
 
     return res
