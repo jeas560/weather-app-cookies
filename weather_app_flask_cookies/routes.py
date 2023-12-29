@@ -19,7 +19,7 @@ MAX_AGE = 60 * 60 * 24 * 365 * 2
 
 
 def get_weather_data(city):
-    url = f"{api_url}{ city }&units=metric&appid={api_key}"
+    url = f"{api_url}{ city }&units=metric&lang=pt_br&appid={api_key}"
     r = requests.get(url).json()
     return r
 
@@ -43,7 +43,7 @@ def index_get():
             weather = {
                 "city": city,
                 "temperature": r["main"]["temp"],
-                "description": r["weather"][0]["description"],
+                "description": r["weather"][0]["description"].capitalize(),
                 "icon": r["weather"][0]["icon"],
             }
 
