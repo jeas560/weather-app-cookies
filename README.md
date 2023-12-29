@@ -5,6 +5,13 @@ Projeto de estudo flask e utilização de cookies do browser.
 ## Objetivos da implementação
 
 - [x] Extração de dados da API da `Openweathermap`
+- [ ] Refatoração do código para uma melhor leitura
+- [ ] Adição de testes automatizados
+- [ ] Fazer deploy na vercel e implmentação de CI/CD
+- [ ] Adição de pre-commit?
+- [ ] Adição de nova feature: `Limpar todas as Cidades`
+- [ ] Adição de nova feature: `Exportar Cidades`
+- [ ] Adição de nova feature: `Importar Cidades`
 
 ## 📦 Package manager
 
@@ -30,7 +37,13 @@ Em construção
 
 ## 🧪 Testes
 
-Em construção
+(Ainda em construção)
+
+Utilizaremos `pytest` para testar nosso código. Você pode executar os testes executando o seguinte comando:
+
+```bash
+poetry run pytest
+```
 
 ## Inicializando o servidor
 
