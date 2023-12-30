@@ -4,16 +4,9 @@ Projeto de estudo flask e utilização de cookies do browser.
 
 ## Objetivos da implementação
 
-- [x] Extração de dados da API da `Openweathermap`
-- [x] Refatoração do código para uma melhor leitura
-- [x] Adição de Blueprints
-- [ ] Adição de Error Handlers
-- [ ] Adição de testes automatizados
-- [ ] Fazer deploy na vercel e implmentação de CI/CD
-- [ ] Adição de pre-commit?
-- [ ] Adição de nova feature: `Limpar todas as Cidades`
-- [ ] Adição de nova feature: `Exportar Cidades`
-- [ ] Adição de nova feature: `Importar Cidades`
+- Extração de dados da API da `Openweathermap`
+- Apresentação dos dados de Temperatura e descrição do tempo numa tela amigável e responsiva
+- Armazenamento dos dados em cookies do browser para entregar uma experiência personalizada pra cada usuário e sem precisar criar uma conta pra utilizar o serviço
 
 ## 📦 Package manager
 
