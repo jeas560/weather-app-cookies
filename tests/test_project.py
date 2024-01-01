@@ -69,3 +69,19 @@ def test_add_wrong_city(client):
     response = client.get("/")
 
     assert bytes("Cidade não encontrada!", "utf-8") in response.data
+
+
+def test_api_offline(client):
+    responses.add(
+        responses.GET,
+        f"{api_url}Tangamandapionildo&units=metric&lang=pt_br&appid={api_key}",
+        status=500,
+    )
+    client.post("/", data={"city": "Tangamandapionildo"})
+
+    response = client.get("/")
+
+    assert (
+        bytes("Por favor, aguarde um momento e tente novamente!", "utf-8")
+        in response.data
+    )

@@ -48,15 +48,17 @@ def index_get():
             }
 
             weather_data.append(weather)
+    else:
+        err_msg = "Por favor, aguarde um momento e tente novamente!"
+        flash(err_msg, "error")
 
     return render_template("weather.html", weather_data=weather_data)
 
 
 @main.route("/", methods=["POST"])
 def index_post():
-    req = request.cookies.get("cidades")
     err_msg = ""
-
+    req = request.cookies.get("cidades")
     new_city = request.form.get("city").capitalize()
 
     if new_city and new_city != "":
