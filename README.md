@@ -23,7 +23,7 @@ poetry install
 Foi utilizado `black` para reformatar o código executando o seguinte comando:
 
 ```bash
-black weather-app-flask-cookies 
+black weather_app_cookies 
 ```
 
 ## 🤖 Scripts de automação
@@ -42,7 +42,7 @@ poetry run pytest
 
 ## Inicializando o servidor
 
-Para inicializar o servidpor utilize o comando:
+Para inicializar o servidor utilize o comando:
 
 ```bash
 poetry run flask --app weather_app_flask_cookies/app run
